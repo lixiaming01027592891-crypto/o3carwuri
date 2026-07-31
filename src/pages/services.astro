@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { services, categories, shopInfo } from '../data/services';
+---
+
+<Base
+  title="服務項目與價目表｜O3 汽車美容 高鐵店"
+  description="O3 汽車美容高鐵店完整服務價目：頂級鑽石車體鍍膜、玻璃長效晶鑽鍍膜、精緻洗車、棕櫚蠟、Zymol 釉蠟洗車、深層鏡面美容與車廂全套清洗護理，依車型大小透明計價。"
+>
+  <!-- ===================== 頁首 ===================== -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Services & Pricing</span>
+      <h1>服務項目<span class="gold-text">與價目表</span></h1>
+      <p>
+        所有方案皆依車型大小透明計價。從日常精緻洗車，到頂級鑽石鍍膜，
+        每一道工序都由 10 年以上經驗的職人團隊親自完成。
+      </p>
+      <nav class="cat-nav">
+        {categories.map((c) => <a href={`#${c.id}`}>{c.name}</a>)}
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===================== 服務清單 ===================== -->
+  {categories.map((cat) => (
+    <section class="service-block" id={cat.id}>
+      <div class="container">
+        <div class="cat-title reveal">
+          <h2>{cat.name}</h2>
+          <span>{cat.desc}</span>
+        </div>
+        {services
+          .filter((s) => s.category === cat.id)
+          .map((s, i) => <ServiceCard service={s} delay={Math.min(i + 1, 3)} />)}
+      </div>
+    </section>
+  ))}
+
+  <!-- ===================== 計價說明 + CTA ===================== -->
+  <section class="section section--alt" style="margin-top: 60px;">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div>
+          <span class="eyebrow" style="margin-bottom: 14px;">Booking</span>
+          <h2>不確定愛車適合<span class="gold-text">哪個方案？</span></h2>
+          <p>
+            歡迎來電由專人依車況建議最合適的服務組合。
+            搭高鐵前交車、回程取車，時間剛剛好。
+          </p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-gold" href={shopInfo.phoneHref}>來電諮詢 {shopInfo.phone}</a>
+          <a class="btn btn-ghost" href={shopInfo.mapUrl} target="_blank" rel="noopener">地圖導航</a>
+        </div>
+      </div>
+      <p class="reveal" data-delay="1" style="margin-top: 34px; color: var(--muted); font-size: 13.5px; text-align:center; letter-spacing: 0.06em;">
+        ※ 以上價格皆為現金優惠價，實際報價以現場車況評估為準。大型豪車與特殊車款請來電洽詢。
+      </p>
+    </div>
+  </section>
+</Base>

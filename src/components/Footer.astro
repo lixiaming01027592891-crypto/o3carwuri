@@ -1,0 +1,56 @@
+---
+import { shopInfo } from '../data/services';
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="f-brand">
+        <a class="brand" href="/">
+          <span class="brand-mark brand-logo"><img src="/images/logo.jpg" alt="O3 汽車美容 SPA 館 logo" /></span>
+          <span class="brand-text">
+            <strong>O3 汽車美容</strong>
+            <span>高鐵店 · 台中烏日</span>
+          </span>
+        </a>
+        <p>
+          位於台中高鐵旁，深耕在地超過 10 年。把每位顧客當家人，
+          把每台車當自己的車細心服務。
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <strong>服務項目</strong>
+        <ul>
+          <li><a href="/services/#coating">鍍膜服務</a></li>
+          <li><a href="/services/#wash">洗車服務</a></li>
+          <li><a href="/services/#detail">美容服務</a></li>
+          <li><a href="/services/#interior">車廂護理</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <strong>網站導覽</strong>
+        <ul>
+          <li><a href="/#about">公司簡介</a></li>
+          <li><a href="/news/">最新消息</a></li>
+          <li><a href="/#contact">聯絡我們</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <strong>聯絡資訊</strong>
+        <ul>
+          <li><a href={shopInfo.phoneHref}>{shopInfo.phone}</a></li>
+          <li>{shopInfo.address}</li>
+          <li><a href={shopInfo.mapUrl} target="_blank" rel="noopener">Google 地圖導航 →</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {new Date().getFullYear()} O3 汽車美容 高鐵店. All rights reserved.</span>
+      <span>台中高鐵 · 第一停車場內</span>
+    </div>
+  </div>
+</footer>

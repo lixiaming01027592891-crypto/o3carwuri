@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { shopInfo } from '../../data/services';
+
+const posts = (await getCollection('news')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Base
+  title="最新消息｜O3 汽車美容 高鐵店"
+  description="O3 汽車美容高鐵店最新消息：優惠活動、鍍膜知識、用車保養分享。"
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">News</span>
+      <h1>最新<span class="gold-text">消息</span></h1>
+      <p>優惠活動、施工知識與用車保養分享，不定期更新。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="news-grid">
+        {posts.map((post, i) => (
+          <a class="news-card reveal" data-delay={(i % 3) + 1} href={`/news/${post.id}/`}>
+            {post.data.image && (
+              <div class="news-thumb">
+                <img src={post.data.image} alt={post.data.title} loading="lazy" />
+              </div>
+            )}
+            <div class="news-body">
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <span class="news-link">
+                閱讀全文
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="cta-band reveal" style="margin-top: 70px;">
+        <div>
+          <span class="eyebrow" style="margin-bottom: 14px;">Booking</span>
+          <h2>想預約施作<span class="gold-text">或詢問方案？</span></h2>
+          <p>歡迎來電，由專人依車況與行程為您建議。</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-gold" href={shopInfo.phoneHref}>來電預約 {shopInfo.phone}</a>
+          <a class="btn btn-ghost" href="/services/">查看服務價目</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

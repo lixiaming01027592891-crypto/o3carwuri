@@ -1,0 +1,235 @@
+---
+import Base from '../layouts/Base.astro';
+import { shopInfo, categories } from '../data/services';
+
+const advantages = [
+  {
+    title: '多一道防護',
+    desc: '車漆上方多了一道防護層，抵禦紫外線、酸雨與日常汙染物的侵襲。',
+    icon: 'M12 3l7 3v5c0 4.6-3 8.6-7 10-4-1.4-7-5.4-7-10V6l7-3z',
+  },
+  {
+    title: '亮度硬度升級',
+    desc: '提升漆面亮度、增加漆面硬度，讓愛車長保如新車般的鏡面光澤。',
+    icon: 'M12 2l2.4 6.9H21l-5.3 4.2 2 7.1L12 16l-5.7 4.2 2-7.1L3 8.9h6.6L12 2z',
+  },
+  {
+    title: '不易沾黏髒汙',
+    desc: '相較於一般車況，鍍膜後的漆面更不易沾黏灰塵與污垢，日常清潔更輕鬆。',
+    icon: 'M12 3c3.5 4.5 7 8.2 7 11.5A7 7 0 1 1 5 14.5C5 11.2 8.5 7.5 12 3z',
+  },
+];
+
+const catImages: Record<string, string> = {
+  coating: "url('/images/cat-coating.jpg')",
+  wash: "url('/images/cat-wash.jpg')",
+  detail: "url('/images/cat-detail.jpg')",
+  interior: "url('/images/cat-interior.jpg')",
+};
+
+const gallery = [
+  { src: '/images/about.jpg', alt: 'O3 汽車美容施工區實拍' },
+  { src: '/images/cat-wash.jpg', alt: '精緻洗車完工實拍' },
+  { src: '/images/cat-detail.jpg', alt: '漆面美容特寫' },
+  { src: '/images/cat-interior.jpg', alt: '車廂內裝護理' },
+  { src: '/images/cat-coating.jpg', alt: '鍍膜鏡面光澤' },
+  { src: '/images/hero.jpg', alt: '鍍膜施工車位實拍' },
+];
+---
+
+<Base title="O3 汽車美容 高鐵店｜台中高鐵旁 專業鍍膜・洗車・美容">
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-tag">台中高鐵 · 第一停車場內</span>
+        <h1>
+          把每台車，<br />當<span class="gold-text">自己的車</span>細心服務
+        </h1>
+        <p class="lead">
+          O3 汽車美容高鐵店深耕在地超過 10 年。讓您搭高鐵的同時，
+          也能安心整理愛車——誠信，是我們最重要的原則。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="/services/">瀏覽服務項目</a>
+          <a class="btn btn-ghost" href={shopInfo.phoneHref}>電話預約 {shopInfo.phone}</a>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong class="gold-text">10<span style="font-size:22px;">+</span></strong>
+          <span>年深耕在地</span>
+        </div>
+        <div class="hero-stat">
+          <strong class="gold-text">9</strong>
+          <span>項專業服務方案</span>
+        </div>
+        <div class="hero-stat">
+          <strong class="gold-text">1<span style="font-size:22px;"> 年</span></strong>
+          <span>玻璃鍍膜保固</span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint"></div>
+  </section>
+
+  <!-- ===================== 公司簡介 ===================== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">About O3</span>
+        <h2 class="section-title">公司簡介</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-photo reveal" data-delay="1">
+          <img src="/images/about.jpg" alt="O3 汽車美容高鐵店施工區實拍" loading="lazy" />
+          <span class="photo-tag">O3 高鐵店 · 施工區實拍</span>
+        </div>
+        <div class="about-side">
+          <div class="g-card reveal" data-delay="2" style="padding: 40px 38px;">
+            <p style="font-size: 16.5px; color: #d7dae0; margin-bottom: 18px;">
+              O3 汽車美容高鐵店位於台中高鐵旁，深耕在地超過 10 年，
+              讓您搭高鐵的同時，也能安心整理愛車。
+              我們以專業流程與嚴格品質控管，提供穩定、值得信賴的服務。
+            </p>
+            <p style="font-size: 16.5px; color: #d7dae0;">
+              誠信是我們最重要的原則。不誇大、不作秀，承諾一定做到。
+              把每位顧客當家人，把每台車當自己的車細心服務。
+            </p>
+          </div>
+          <div class="g-card reveal" data-delay="3" style="gap: 18px;">
+            <div>
+              <p style="font-size:13px; letter-spacing:0.25em; color:var(--muted); margin-bottom:6px;">鍍膜・美容</p>
+              <p style="font-size:15.5px;">車體鍍膜、玻璃鍍膜、漆面美容、車內清潔殺菌</p>
+            </div>
+            <div style="height:1px; background:var(--line-soft);"></div>
+            <div>
+              <p style="font-size:13px; letter-spacing:0.25em; color:var(--muted); margin-bottom:6px;">洗車服務</p>
+              <p style="font-size:15.5px;">Zymol 釉蠟洗車、鍍膜維護洗車、精緻洗車</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 鍍膜優勢 ===================== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Coating Benefits</span>
+        <h2 class="section-title">鍍膜優勢</h2>
+        <p class="section-sub">為什麼越來越多車主選擇鍍膜？三道防護，看得見也感受得到。</p>
+      </div>
+      <div class="card-grid cols-3">
+        {advantages.map((a, i) => (
+          <div class="g-card reveal" data-delay={i + 1}>
+            <div class="icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d={a.icon} />
+              </svg>
+            </div>
+            <h3>{a.title}</h3>
+            <p>{a.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 服務分類 ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our Services</span>
+        <h2 class="section-title">服務項目</h2>
+        <p class="section-sub">四大類專業服務，依車型大小透明計價，絕不另行加價。</p>
+      </div>
+      <div class="card-grid cols-4">
+        {categories.map((c, i) => (
+          <a
+            class="cat-card reveal"
+            data-delay={i + 1}
+            href={`/services/#${c.id}`}
+            style={`--cat-img: ${catImages[c.id]};`}
+          >
+            <span class="cat-no">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{c.name}</h3>
+            <p>{c.desc}</p>
+            <span class="cat-link">
+              查看方案
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 施工實拍 ===================== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our Works</span>
+        <h2 class="section-title">施工實拍</h2>
+        <p class="section-sub">每一台離開 O3 的車，都是我們最滿意的作品。</p>
+      </div>
+      <div class="gallery-grid">
+        {gallery.map((g, i) => (
+          <div class="gallery-item reveal" data-delay={(i % 3) + 1}>
+            <img src={g.src} alt={g.alt} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="section section--alt" id="contact">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div>
+          <span class="eyebrow" style="margin-bottom: 14px;">Contact Us</span>
+          <h2>搭高鐵前，先把愛車<span class="gold-text">交給我們</span></h2>
+          <p>回來時，它已煥然一新。歡迎來電預約，或直接前往高鐵三路第一停車場。</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-gold" href={shopInfo.phoneHref}>立即來電預約</a>
+          <a class="btn btn-ghost" href={shopInfo.mapUrl} target="_blank" rel="noopener">地圖導航</a>
+        </div>
+      </div>
+
+      <div class="contact-grid" style="margin-top: 60px;">
+        <div class="contact-item reveal" data-delay="1">
+          <div class="icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+          </div>
+          <div>
+            <strong>預約專線</strong>
+            <a class="link" href={shopInfo.phoneHref}>{shopInfo.phone}</a>
+          </div>
+        </div>
+        <div class="contact-item reveal" data-delay="2">
+          <div class="icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <strong>門市地址</strong>
+            <p>{shopInfo.address}</p>
+          </div>
+        </div>
+        <div class="contact-item reveal" data-delay="3">
+          <div class="icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <strong>便利位置</strong>
+            <p>台中高鐵站旁，搭車前交車、回程取車，省時又安心。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

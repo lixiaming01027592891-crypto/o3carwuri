@@ -1,0 +1,36 @@
+---
+import type { Service } from '../data/services';
+
+interface Props {
+  service: Service;
+  delay?: number;
+}
+
+const { service, delay = 0 } = Astro.props;
+---
+
+<article class="service-card reveal" data-delay={delay || undefined} id={service.id}>
+  <div class="service-info">
+    {service.badge && <span class="service-badge">{service.badge}</span>}
+    <h3>{service.name}</h3>
+    <p class="tagline">{service.tagline}</p>
+    <ul class="feature-list">
+      {service.features.map((f) => <li>{f}</li>)}
+    </ul>
+    {service.note && <p class="service-note">💡 {service.note}</p>}
+  </div>
+
+  <div class="service-price">
+    {service.priceGroups.map((group) => (
+      <div class="price-group">
+        {group.title && <p class="price-group-title">{group.title}</p>}
+        {group.rows.map((row) => (
+          <div class="price-row">
+            <span class="p-label">{row.label}</span>
+            <span class="p-value"><small>NT$</small>{row.price}</span>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</article>
