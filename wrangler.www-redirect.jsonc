@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "o3car-www-redirect",
+  "main": "./workers/www-redirect.js",
+  "compatibility_date": "2026-09-13",
+  "routes": [
+    {
+      "pattern": "www.o3car.com/*",
+      "zone_name": "o3car.com"
+    }
+  ]
+}

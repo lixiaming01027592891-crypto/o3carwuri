@@ -1,0 +1,18 @@
+const canonicalHost = 'o3car.com';
+
+export default {
+  async fetch(request) {
+    const url = new URL(request.url);
+    url.protocol = 'https:';
+    url.hostname = canonicalHost;
+    url.port = '';
+
+    return new Response(null, {
+      status: 301,
+      headers: {
+        Location: url.toString(),
+        'Cache-Control': 'public, max-age=3600',
+      },
+    });
+  },
+};
